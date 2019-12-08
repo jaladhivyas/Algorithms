@@ -28,15 +28,52 @@ void createList(Node<T> *list)
 template<typename T>
 void reverseList(Node<T> *list)
 {
-  Node<T> *currTemp = list->next;
-  Node<T> *currNext = list->next->next;
-  Node<T> *prevTemp = list;
+  Node<T> *curr = list;
   Node<T> *prev = NULL;
+  Node<T> *s;
   while(list != NULL)
   {
-
-      prevTemp->next = prev;
-      currTemp->next = prevTemp;
-
+      s= prev;
+      prev = curr;
+      curr = curr->next;
+      prev->next = s;
   }
+  *list = prev;
+}
+
+template<typename T>
+int count(Node<T> *list)
+{
+  if(list->next == NULL)
+      return 0;
+  else
+      return(1 + count(list->next));
+}
+
+template<typename T>
+void print(Node<T> *list)
+{
+    if(list->next !=NULL)
+    {
+      cout<<"data"<<list->data;
+      if(list->next->next == NULL)
+          print(list->next->data);
+      print(list->next);
+    }
+    return;
+}
+
+template<typename T>
+void createListRecursive(Node<T> *list)
+{
+    cout<<"Input Number"<<endl;
+    cin>>list->data;
+    if(list->data == -999)
+        list->next = NULL;
+    else
+    {
+        list->next = (Node<T> *) malloc(sizeof(Node<T>));
+        createListRecursive(list->next);
+    }
+    return;
 }
