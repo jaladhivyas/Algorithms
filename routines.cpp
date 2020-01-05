@@ -43,11 +43,16 @@ void printSortedMatrix(T matrix[])
  }
 }
 
-int main()
+void constructTree(int pre[], int preln[], int a, int b)
 {
-  string s1 = "abc23de3";
-  sumOfNumbersInString(s1);
-  int matrix[N*N]= {10,20,30,40,15,25,35,45,27,29,37,48,32,33,39,50};
-  printSortedMatrix(matrix);
 
 }
+
+//int main()
+//{
+//  string s1 = "abc23de3";
+//  sumOfNumbersInString(s1);
+//  int matrix[N*N]= {10,20,30,40,15,25,35,45,27,29,37,48,32,33,39,50};
+//  printSortedMatrix(matrix);
+
+//}
