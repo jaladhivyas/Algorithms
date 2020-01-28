@@ -144,6 +144,24 @@
 //}
 
 //template<typename T>
+//int minDepth(Node<T> * root)
+//{
+//    int leftCount =0;
+
+//    if(root==null)
+//        return 0;
+//    else
+//    {
+//        if(root->left !=NULL)
+//            leftCount = 1+minDepth(root->left);
+//        if(root->right !=NULL)
+//            leftCount = min(leftcount, 1+minDepth(root->right));
+//    }
+
+//    return leftCount;
+//}
+
+//template<typename T>
 //int totalNoOfLeaves(Node<T> *root)
 //{
 //    int count =0;

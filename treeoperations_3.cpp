@@ -1,249 +1,300 @@
-#include<iostream>
-#include<queue>
-using namespace std;
+//#include<iostream>
+//#include<queue>
+//using namespace std;
 
 
 
-template<typename T>
-struct Node
-{
-    T data;
-    Node<T> *left, *right;
-};
+//template<typename T>
+//struct Node
+//{
+//    T data;
+//    Node<T> *left, *right;
+//};
+
+//template<typename T>
+//struct List
+//{
+//    T data;
+//    List<T> *next;
+//};
+
+//template<typename T>
+//Node<T>* newNode(T data)
+//{
+// Node<T> *temp = new Node<T>();
+// temp->data = data;
+// temp->left = NULL;
+// temp->right = NULL;
+//}
+
+//template<typename T>
+//void convertList2Binary(List<T> *head, Node<T> *root)
+//{
+//  queue<Node<T> *> q;
+
+//  if(head == NULL)
+//  {
+//      root = NULL;
+//      return;
+//  }
+
+//  root = newNode(head->data);
+//  q.push(root);
+
+//  head = head->next;
+//  while(head)
+//  {
+//      Node<T> *parent = q.front();
+//      q.pop();
+
+//     Node<T> *leftChild  = NULL;
+//     Node<T> *rightChild = NULL;
+
+//     leftChild = newNode(head->data);
+//     q.push(leftChild);
+//     head = head->next;
+
+//     if(head)
+//     {
+//         rightChild = newNode(head->data);
+//         q.push(rightChild);
+//         head = head->next;
+//     }
+
+//     parent->left  = leftChild;
+//     parent->right = rightChild;
+//  }
+
+//}
+
+//template<typename T>
+//void createTopology(Node<T> **root)
+//{
+//  *root = newNode(10);
+//  (*root)->left = newNode(20);
+//  (*root)->right = newNode(30);
+//  (*root)->left->left = newNode(40);
+//  (*root)->left->right = newNode(50);
+//  (*root)->right->left = newNode(60);
+//  (*root)->right->right = newNode(70);
+
+//  (*root)->left->left->left = newNode(75);
+//  (*root)->left->left->right = newNode(80);
+//  (*root)->right->left->left = newNode(85);
+//  (*root)->right->right->right = newNode(90);
+//}
 
 
-template<typename T>
-Node<T>* newNode(T data)
-{
- Node<T> *temp = new Node<T>();
- temp->data = data;
- temp->left = NULL;
- temp->right = NULL;
-}
+//template<typename T>
+//int maxLevelSum(Node<T> *root)
+//{
+//  if(root == NULL)
+//      return 0;
+//  int result = root->data;
 
-template<typename T>
-void createTopology(Node<T> **root)
-{
-  *root = newNode(10);
-  (*root)->left = newNode(20);
-  (*root)->right = newNode(30);
-  (*root)->left->left = newNode(40);
-  (*root)->left->right = newNode(50);
-  (*root)->right->left = newNode(60);
-  (*root)->right->right = newNode(70);
+//  queue<Node<T> *> q;
+//  q.push(root);
 
-  (*root)->left->left->left = newNode(75);
-  (*root)->left->left->right = newNode(80);
-  (*root)->right->left->left = newNode(85);
-  (*root)->right->right->right = newNode(90);
-}
+//  while(!q.empty())
+//  {
+//      int count = q.size();
+//      int sum =0;
 
+//      while(count--)
+//      {
+//          Node<T> *temp = q.front();
+//          q.pop();
+//          sum = sum + temp->data;
 
-template<typename T>
-int maxLevelSum(Node<T> *root)
-{
-  if(root == NULL)
-      return 0;
-  int result = root->data;
+//          if(temp->left != NULL)
+//              q.push(temp->left);
+//          if(temp->right != NULL)
+//              q.push(temp->right);
+//      }
 
-  queue<Node<T> *> q;
-  q.push(root);
+//      result = max(sum, result);
+//  }
 
-  while(!q.empty())
-  {
-      int count = q.size();
-      int sum =0;
+//  return result;
+//}
 
-      while(count--)
-      {
-          Node<T> *temp = q.front();
-          q.pop();
-          sum = sum + temp->data;
+//template<typename T>
+//int maxNoOFPerlevel(Node<T> *root)
+//{
+//  if(root == NULL)
+//      return 0;
+//  int result = root->data;
 
-          if(temp->left != NULL)
-              q.push(temp->left);
-          if(temp->right != NULL)
-              q.push(temp->right);
-      }
+//  queue<Node<T> *> q;
+//  q.push(root);
 
-      result = max(sum, result);
-  }
+//  int maxVal  = INT8_MIN;
+//  int level   = 0;
+//  int levelNo = 0;
 
-  return result;
-}
+//  while(1)
+//  {
+//      int nodeCount = q.size();
+//      if(nodeCount ==0)
+//          break;
+//      if(nodeCount > maxVal)
+//      {
+//          maxVal = nodeCount;
+//          levelNo = level;
+//      }
 
-template<typename T>
-int maxNoOFPerlevel(Node<T> *root)
-{
-  if(root == NULL)
-      return 0;
-  int result = root->data;
+//      while(nodeCount >0)
+//      {
+//          Node<T> *node = q.front();
+//          q.pop();
+//          if(node->left != NULL)
+//              q.push(node->left);
+//          if(node->right != NULL)
+//              q.push(node->right);
+//          nodeCount--;
+//      }
+//      level++;
+//  }
 
-  queue<Node<T> *> q;
-  q.push(root);
+//  return levelNo;
+//}
 
-  int maxVal  = INT8_MIN;
-  int level   = 0;
-  int levelNo = 0;
+//template<typename T>
+//Node<T>* extractLeafList(Node<T> *root, Node<T>** head)
+//{
+//    if(root == NULL)
+//        return NULL;
+//    if(root->left == NULL && root->right == NULL)
+//    {
+//       if((*head) == NULL)
+//       {
+//         (*head) = root;
+//       }
+//       else
+//       {
+//         (*head)->right = root;
+//         root->left = *head;
+//         *head = root;
+//       }
 
-  while(1)
-  {
-      int nodeCount = q.size();
-      if(nodeCount ==0)
-          break;
-      if(nodeCount > maxVal)
-      {
-          maxVal = nodeCount;
-          levelNo = level;
-      }
+//        return NULL;
+//    }
+//    root->left  = extractLeafList(root->left, head);
+//    root->right = extractLeafList(root->right, head);
+//}
 
-      while(nodeCount >0)
-      {
-          Node<T> *node = q.front();
-          q.pop();
-          if(node->left != NULL)
-              q.push(node->left);
-          if(node->right != NULL)
-              q.push(node->right);
-          nodeCount--;
-      }
-      level++;
-  }
+//template<typename T>
+//Node<T>* concatenate(Node<T>* leftList, Node<T>* rightList)
+//{
+//  if(leftList == NULL)
+//      return rightList;
+//  if(rightList == NULL)
+//      return leftList;
 
-  return levelNo;
-}
+//  Node<T> *leftLast  = leftList->left;
+//  Node<T> *rightLast = rightList->left;
 
-template<typename T>
-Node<T>* extractLeafList(Node<T> *root, Node<T>** head)
-{
-    if(root == NULL)
-        return NULL;
-    if(root->left == NULL && root->right == NULL)
-    {
-       if((*head) == NULL)
-       {
-         (*head) = root;
-       }
-       else
-       {
-         (*head)->right = root;
-         root->left = *head;
-         *head = root;
-       }
+//  leftLast->right = rightList;
+//  rightList->left = leftLast;
 
-        return NULL;
-    }
-    root->left  = extractLeafList(root->left, head);
-    root->right = extractLeafList(root->right, head);
-}
+//  leftList->left = rightLast;
+//  rightLast->right = leftList;
 
-template<typename T>
-Node<T>* concatenate(Node<T>* leftList, Node<T>* rightList)
-{
-  if(leftList == NULL)
-      return rightList;
-  if(rightList == NULL)
-      return leftList;
-
-  Node<T> *leftLast  = leftList->left;
-  Node<T> *rightLast = rightList->left;
-
-  leftLast->right = rightList;
-  rightList->left = leftLast;
-
-  leftList->left = rightLast;
-  rightLast->right = leftList;
-
-  return leftList;
-}
+//  return leftList;
+//}
 
 
-template<typename T>
-Node<T>* bTreeToCList(Node<T>* root)
-{
-   if(root == NULL)
-       return NULL;
+//template<typename T>
+//Node<T>* bTreeToCList(Node<T>* root)
+//{
+//   if(root == NULL)
+//       return NULL;
 
-   Node<T> *left = bTreeToCList(root->left);
-   Node<T> *right = bTreeToCList(root->right);
+//   Node<T> *left = bTreeToCList(root->left);
+//   Node<T> *right = bTreeToCList(root->right);
 
-   root->left = root->right = root;
+//   root->left = root->right = root;
 
-   return concatenate(concatenate(left,root), right);
-}
+//   return concatenate(concatenate(left,root), right);
+//}
 
-template<typename T>
-Node<T>* removeHalfNodes(Node<T>* root)
-{
-  if(root == NULL)
-      return root;
+//template<typename T>
+//Node<T>* removeHalfNodes(Node<T>* root)
+//{
+//  if(root == NULL)
+//      return root;
 
-  root->left  = removeHalfNodes(root->left);
-  root->right = removeHalfNodes(root->right);
+//  root->left  = removeHalfNodes(root->left);
+//  root->right = removeHalfNodes(root->right);
 
-  if(root->left == NULL && root->right == NULL)
-      return root;
+//  if(root->left == NULL && root->right == NULL)
+//      return root;
 
-  if(root->left == NULL)
-  {
-      Node<T> *newRight = root->right;
-      delete root;
-      return newRight;
-  }
+//  if(root->left == NULL)
+//  {
+//      Node<T> *newRight = root->right;
+//      delete root;
+//      return newRight;
+//  }
 
-  if(root->right == NULL)
-  {
-     Node<T> *newLeft = root->left;
-     delete root;
-     return newLeft;
-  }
+//  if(root->right == NULL)
+//  {
+//     Node<T> *newLeft = root->left;
+//     delete root;
+//     return newLeft;
+//  }
 
-  return root;
+//  return root;
 
-}
+//}
 
 
-template<typename T>
-void print(Node<T> *root)
-{
-    if(root != NULL)
-    {
 
-       print(root->left);
-       cout<<root->data<<endl;
-       print(root->right);
-    }
-}
 
-template<typename T>
-void printList(Node<T> *head)
-{
-    while(head != NULL)
-    {
-       cout<<head->data<<endl;
-       head = head->left;
-    }
-}
 
-int main()
-{
-  cout<<"Hello"<<endl;
-  Node<int> *root=NULL;
-  Node<int> *head = NULL;
-  createTopology(&root);
-  //print(root);
-  //root = extractLeafList(root, &head);
-  // head = bTreeToCList(root);
 
-  //Node<int> *newRoot = removeHalfNodes(root);
-  //printList(head);
 
-  int maxlevel = maxLevelSum(root);
-  cout<<"Sum is"<<maxlevel<<endl;
-  print(root);
+//template<typename T>
+//void print(Node<T> *root)
+//{
+//    if(root != NULL)
+//    {
 
-  return 0;
-}
+//       print(root->left);
+//       cout<<root->data<<endl;
+//       print(root->right);
+//    }
+//}
+
+//template<typename T>
+//void printList(Node<T> *head)
+//{
+//    while(head != NULL)
+//    {
+//       cout<<head->data<<endl;
+//       head = head->left;
+//    }
+//}
+
+//int main()
+//{
+//  cout<<"Hello"<<endl;
+//  Node<int> *root=NULL;
+//  Node<int> *head = NULL;
+//  createTopology(&root);
+//  //print(root);
+//  //root = extractLeafList(root, &head);
+//  // head = bTreeToCList(root);
+
+//  //Node<int> *newRoot = removeHalfNodes(root);
+//  //printList(head);
+
+//  int maxlevel = maxLevelSum(root);
+//  cout<<"Sum is"<<maxlevel<<endl;
+//  print(root);
+
+//  return 0;
+//}
 
 
 

@@ -19,7 +19,11 @@ SOURCES += main.cpp \
     treeoperations_2.cpp \
     experiment.cpp \
     treeoperations_3.cpp \
-    expressiontree.cpp
+    expressiontree.cpp \
+    arrayoperations.cpp \
+    mathematics.cpp \
+    hashmap.cpp \
+    bfs.cpp
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which as been marked deprecated (the exact warnings
